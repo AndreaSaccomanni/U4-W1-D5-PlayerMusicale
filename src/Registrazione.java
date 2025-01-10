@@ -8,19 +8,19 @@ public class Registrazione extends ElementoMultimediale {
         this.durata = durata;
     }
 
-    public int getDurata() {
+    /*public int getDurata() {
         return durata;
-    }
+    }*/
 
     public int getVolume() {
         return volume;
     }
 
 
-    @Override
-    public String getTitolo() {
-        return super.getTitolo();
-    }
+//    @Override
+//    public String getTitolo() {
+//        return super.getTitolo();
+//    }
 
     public int aumentaVolume(int aumentaVolumeDi) {
         volume += aumentaVolumeDi;
