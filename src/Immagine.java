@@ -1,5 +1,5 @@
 public class Immagine extends ElementoMultimediale {
-    private int light;
+    private static int light;
 
     public Immagine(String titolo, int light) {
         super(titolo);
@@ -12,7 +12,7 @@ public class Immagine extends ElementoMultimediale {
 
     public void show() {
         String valoreLight = "*".repeat(light);
-        System.out.println("Il titolo dell'immagine è: " + getTitolo() + ". Il valore della luminosità è: " + valoreLight);
+        System.out.println("Il titolo dell'immagine è: " + this.getTitolo() + ". Il valore della luminosità è: " + valoreLight);
     }
 
 
