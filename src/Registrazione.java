@@ -25,6 +25,7 @@ public class Registrazione extends ElementoMultimediale implements GestioneVolum
 //        return super.getTitolo();
 //    }
 
+
     @Override
     public int aumentaVolume(int aumentaVolumeDi) {
         volume += aumentaVolumeDi;
@@ -35,6 +36,11 @@ public class Registrazione extends ElementoMultimediale implements GestioneVolum
     public int diminuisciVolume(int diminuisciVolumeDi) {
         volume -= diminuisciVolumeDi;
         return volume;
+    }
+
+    public int tagliaRegistrazione(int diminuisciDurataDi) {
+        durata -= diminuisciDurataDi;
+        return durata;
     }
 
     public void play() {

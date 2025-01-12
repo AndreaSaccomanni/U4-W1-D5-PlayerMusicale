@@ -58,13 +58,20 @@ public class Video extends ElementoMultimediale implements GestioneVolume, Gesti
     }
 
 
+
+    public int tagliaVideo(int diminuisciDurataDi) {
+        durata -= diminuisciDurataDi;
+        return durata;
+    }
+
+
     public void play() {
         String valoreVolume = "!".repeat(volume);
         String valoreLight = "*".repeat(light);
         //String playTitolo = getTitolo().repeat(durata);
         //System.out.println(playTitolo + ". Il valore del volume è: " + valoreVolume);
         for (int i = 0; i < durata; i++) {
-            System.out.println("Titolo video riprodotto: " + getTitolo() + " - Il valore del volume è: " + valoreVolume + " - Il valore  della luminosità è: " + valoreLight);
+            System.out.println("Titolo del video riprodotto: " + getTitolo() + " - Il valore del volume è: " + valoreVolume + " - Il valore  della luminosità è: " + valoreLight);
         }
     }
 }

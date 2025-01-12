@@ -7,90 +7,49 @@ public class Main {
     private static ElementoMultimediale[] elementiMultimediali = new ElementoMultimediale[5];
 
     public static void main(String[] args) {
-
-
-//        System.out.println("-----FUNIONAMENTO IMMAGINI--------");
-//
-//        Immagine img1 = new Immagine("tramonto", 5);
-//        Immagine img2 = new Immagine("alba", 7);
-//
-//        System.out.println("IMMAGINE 1:");
-//        img1.show();
-//        System.out.println("IMMAGINE 2:");
-//        img2.show();
-//        System.out.println("Metodo Aumenta Luminosità immagine1 di 2: ");
-//        img1.aumentaLight(2);
-//        System.out.println("Ora la luminosità è: " + img1.getLight());
-//        img1.show();
-//        System.out.println("Metodo Diminuisci Luminosità immagine1 di 5: ");
-//        img1.diminuisciLight(5);
-//        System.out.println("Ora la luminosità è: " + img1.getLight());
-//        img1.show();
-//
-//        System.out.println("-----FUNIONAMENTO REGISTRAZIONI--------");
-//
-//        Registrazione rec1 = new Registrazione("rec1", 5, 3);
-//        Registrazione rec2 = new Registrazione("rec2", 3, 8);
-//
-//        System.out.println("REGISTRAZIONE 1: ");
-//        rec1.play();
-//        System.out.println("REGISTRAZIONE 2: ");
-//        rec2.play();
-//        System.out.println("Metodo aumenta volume Registrazione1 di 3: ");
-//        rec1.aumentaVolume(3);
-//        System.out.println("Ora il volume di " + rec1.getTitolo() + " è: " + rec1.getVolume());
-//        rec1.play();
-//        System.out.println("Metodo diminuisci volume Registrazione1 di 7: ");
-//        rec1.diminuisciVolume(7);
-//        System.out.println("Ora il volume di " + rec1.getTitolo() + " è: " + rec1.getVolume());
-//        rec1.play();
-//
-//        System.out.println("-----FUNIONAMENTO VIDEO--------");
-//
-//        Video video1 = new Video("Video1", 5, 3, 5);
-//        Video video2 = new Video("Video2", 1, 1, 1);
-//
-//        System.out.println("VIDEO1: ");
-//        video1.play();
-//        System.out.println("VIDEO2: ");
-//        video2.play();
-//
-//        System.out.println("---------");
-//
-//        System.out.println("Metodo Aumenta Luminosità Video1 di 2: ");
-//        video1.aumentaLight(2);
-//        System.out.println("Ora la luminosità è: " + video1.getLight());
-//        video1.play();
-//        System.out.println("Metodo Diminuisci Luminosità Video1 di 5: ");
-//        video1.diminuisciLight(5);
-//        System.out.println("Ora la luminosità è: " + video1.getLight());
-//        video1.play();
-//
-//        System.out.println("---------");
-//
-//        System.out.println("Metodo aumenta volume Video1 di 3: ");
-//        video1.aumentaVolume(3);
-//        System.out.println("Ora il volume di " + video1.getTitolo() + " è: " + video1.getVolume());
-//        video1.play();
-//        System.out.println("Metodo diminuisci volume Video1 di 7: ");
-//        video1.diminuisciVolume(7);
-//        System.out.println("Ora il volume di " + video1.getTitolo() + " è: " + video1.getVolume());
-//        video1.play();
-
-
         Scanner scanner = new Scanner(System.in);
-
-
         int i = -1;
         while (i != 0) {
             if (arrayPieno(elementiMultimediali)) {
-                System.out.println("L'array è pieno!");
+                System.out.println("Lettore Multimediale pieno");
+                System.out.println("Inserisci 1 per riprodurre o mostrare gli elementi multimediali");
+                System.out.println("Inserisci 2 per modificare gli elementi multimediali");
+                System.out.println("Inserisci 0 per chiudere il lettore multimediale");
+
+                if (scanner.hasNextInt()) {
+
+
+                    i = scanner.nextInt();
+                } else {
+                    System.out.println("Errore: Devi inserire un numero valido.");
+                    scanner.next();
+                    continue;
+                }
+                switch (i) {
+                    case 1:
+                        riproduci();
+                        break;
+                    case 2:
+                        modifica();
+                        break;
+                    case 0:
+                        System.out.println("Lettore multimediale chiuso. A presto!");
+                        break;
+
+                    default:
+                        System.out.println("Seleziona 1 o 2 oppure 0 per chiudere il lettore multimediale");
+
+
+                }
+
+
             } else {
                 System.out.println("Inserisci 1 per creare un'immagine");
                 System.out.println("Inserisci 2 per creare un video");
                 System.out.println("Inserisci 3 per creare una registrazione");
-                System.out.println("Inserisci 4 per riprodurre gli elementi multimediali");
+                System.out.println("Inserisci 4 per riprodurre o mostrare gli elementi multimediali");
                 System.out.println("Inserisci 5 per modificare gli elementi multimediali");
+                System.out.println("Inserisci 0 per chiudere il lettore multimediale");
 
                 if (scanner.hasNextInt()) {
                     i = scanner.nextInt();
@@ -145,13 +104,18 @@ public class Main {
                     case 4:
                         riproduci();
                         break;
-//                case "5":
-//                    modifica();
-//                    break;
+                    case 5:
+                        modifica();
+                        break;
+                    case 0:
+                        System.out.println("Lettore multimediale chiuso. A presto!");
+
+
+                        break;
 
 
                     default:
-                        System.out.println("Seleziona un numero da 1 a 5");
+                        System.out.println("Seleziona un numero da 1 a 5 oppure 0 per chiudere il lettore multimediale");
 
                 }
 
@@ -171,30 +135,46 @@ public class Main {
         }
     }
 
+    private static int controlloInputValido(String messaggio) {
+        Scanner scanner = new Scanner(System.in);
+        int valore = 0;
+        boolean inputValido = false;
+
+        while (!inputValido) {
+            System.out.println(messaggio);
+            if (scanner.hasNextInt()) {
+                valore = scanner.nextInt();
+                inputValido = true;
+            } else {
+                System.out.println("Errore: devi inserire un numero intero!");
+                scanner.next();
+            }
+        }
+
+        return valore;
+    }
+
 
     private static ElementoMultimediale creaImmagine() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Inserisci un titolo per l'immagine");
+        System.out.println("Inserisci un titolo per l'immagine:");
         String titolo = scanner.nextLine();
-        System.out.println("Inserisci un valore per la luminosità");
-        int light = scanner.nextInt();
+        int light = controlloInputValido("Inserisci un valore per la luminosità (numero intero):");
         Immagine immagine = new Immagine(titolo, light);
-        //immagine.show();
         return immagine;
-
-
     }
+
 
     private static ElementoMultimediale creaVideo() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Inserisci un titolo per il video");
         String titolo = scanner.nextLine();
-        System.out.println("Inserisci un valore per il volume");
-        int volume = scanner.nextInt();
-        System.out.println("Inserisci un valore per la durata");
-        int durata = scanner.nextInt();
-        System.out.println("Inserisci un valore per la luminosità");
-        int light = scanner.nextInt();
+        int volume = controlloInputValido("Inserisci un valore per il volume (numero intero):");
+        //int volume = scanner.nextInt();
+        int durata = controlloInputValido("Inserisci un valore per la durata (numero intero)");
+        //int durata = scanner.nextInt();
+        int light = controlloInputValido("Inserisci un valore per la luminosità (numero intero)");
+        //int light = scanner.nextInt();
         Video video = new Video(titolo, volume, durata, light);
         //video.play();
         return video;
@@ -205,10 +185,10 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Inserisci un titolo per la registrazione");
         String titolo = scanner.nextLine();
-        System.out.println("Inserisci un valore per il voluume");
-        int volume = scanner.nextInt();
-        System.out.println("Inserisci un valore per la durata");
-        int durata = scanner.nextInt();
+        int volume = controlloInputValido("Inserisci un valore per il volume (numero intero)");
+        //int volume = scanner.nextInt();
+        int durata = controlloInputValido("Inserisci un valore per la durata (numero intero)");
+        //int durata = scanner.nextInt();
         Registrazione registrazione = new Registrazione(titolo, volume, durata);
         //registrazione.play();
         return registrazione;
@@ -216,6 +196,18 @@ public class Main {
     }
 
     private static void riproduci() {
+        boolean tuttiNull = true;
+        for (int i = 0; i < elementiMultimediali.length; i++) {
+            if (elementiMultimediali[i] != null) {
+                tuttiNull = false;
+                break;
+            }
+        }
+
+        if (tuttiNull) {
+            System.out.println("Non ci sono elementi multimediali disponibili, una volta creati potrai riprodurli");
+            return;
+        }
         Scanner scanner = new Scanner(System.in);
         System.out.println("Gli elementi multimediali da riprodurre o mostrare sono: ");
         int posizione = 1;
@@ -269,4 +261,173 @@ public class Main {
 
         return numeroElementi == array.length;
     }
+
+    private static void modifica() {
+        Scanner scanner = new Scanner(System.in);
+
+
+        boolean tuttiNull = true;
+        for (int i = 0; i < elementiMultimediali.length; i++) {
+            if (elementiMultimediali[i] != null) {
+                tuttiNull = false;
+                break;
+            }
+        }
+
+        if (tuttiNull) {
+            System.out.println("Non ci sono elementi multimediali disponibili, una volta creati saranno modificabili");
+            return;
+        }
+
+
+        System.out.println("Seleziona un elemento multimediale da modificare:");
+        for (int i = 0; i < elementiMultimediali.length; i++) {
+            if (elementiMultimediali[i] != null) {
+                System.out.println((i + 1) + ") " + elementiMultimediali[i].getTitolo());
+            }
+        }
+
+        int sceltaElemento = controlloInputValido("Inserisci il numero dell'elemento da modificare:") - 1;
+
+        if (sceltaElemento >= 0 && sceltaElemento < elementiMultimediali.length && elementiMultimediali[sceltaElemento] != null) {
+            ElementoMultimediale elemento = elementiMultimediali[sceltaElemento];
+
+
+            if (elemento instanceof Immagine) {
+                modificaLuminosita((Immagine) elemento);
+
+            } else if (elemento instanceof Video) {
+                System.out.println("Vuoi modificare: \n1) Volume \n2) Luminosità \n3) Durata");
+                int scelta = controlloInputValido("Inserisci la tua scelta:");
+
+                if (scelta == 1) {
+                    modificaVolume((Video) elemento);
+                } else if (scelta == 2) {
+                    modificaLuminosita((Video) elemento);
+                } else if (scelta == 3) {
+                    modificaDurata((Video) elemento);
+                }
+
+            } else if (elemento instanceof Registrazione) {
+                System.out.println("Vuoi modificare: \n1) Volume \n2) Durata");
+                int scelta = controlloInputValido("Inserisci la tua scelta:");
+
+                if (scelta == 1) {
+                    modificaVolume((Registrazione) elemento);
+                } else if (scelta == 2) {
+                    modificaDurata((Registrazione) elemento);
+                }
+            }
+        } else {
+            System.out.println("Selezione non valida.");
+        }
+    }
+
+
+    private static void modificaVolume(ElementoMultimediale elemento) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Vuoi: \n1) Aumentare il volume \n2) Diminuire il volume");
+        int scelta = controlloInputValido("Inserisci la tua scelta:");
+        int valore = controlloInputValido("Di quanto vuoi modificare il volume?");
+
+        if (scelta == 1) {
+            if (elemento instanceof Video) {
+                Video video = (Video) elemento;
+                video.aumentaVolume(valore);
+                System.out.println("Ora il valore del volume è: " + video.getVolume());
+            } else if (elemento instanceof Registrazione) {
+                Registrazione registrazione = (Registrazione) elemento;
+                registrazione.aumentaVolume(valore);
+                System.out.println("Ora il valore del volume è: " + registrazione.getVolume());
+            } else {
+                System.out.println("Tipo di elemento non supportato per la modifica del volume.");
+            }
+        } else if (scelta == 2) {
+            if (elemento instanceof Video) {
+                Video video = (Video) elemento;
+                if (video.getVolume() - valore <= 0) {
+                    System.out.println("Il valore inserito è troppo grande");
+                } else {
+                    video.diminuisciVolume(valore);
+                    System.out.println("Ora il valore del volume è: " + video.getVolume());
+                }
+            } else if (elemento instanceof Registrazione) {
+                Registrazione registrazione = (Registrazione) elemento;
+                if (registrazione.getVolume() - valore <= 0) {
+                    System.out.println("Il valore inserito è troppo grande");
+                } else {
+                    registrazione.diminuisciVolume(valore);
+                    System.out.println("Ora il valore del volume è: " + registrazione.getVolume());
+                }
+            } else {
+                System.out.println("Devi inserire 1 o 2");
+            }
+        }
+    }
+
+    private static void modificaLuminosita(ElementoMultimediale elemento) {
+        System.out.println("Vuoi: \n1) Aumentare la luminosità \n2) Diminuire la luminosità");
+        int scelta = controlloInputValido("Inserisci la tua scelta:");
+        int valore = controlloInputValido("Di quanto vuoi modificare la luminosità?");
+
+        if (scelta == 1) {
+            if (elemento instanceof Video) {
+                Video video = (Video) elemento;
+                video.aumentaLight(valore);
+                System.out.println("Ora il valore della luminosità è: " + video.getLight());
+            } else if (elemento instanceof Immagine) {
+                Immagine immagine = (Immagine) elemento;
+                immagine.aumentaLight(valore);
+                System.out.println("Ora il valore della luminosità è: " + immagine.getLight());
+            } else {
+                System.out.println("Questo elemento non è supportato per la modifica della luminosità.");
+            }
+        } else if (scelta == 2) {
+            if (elemento instanceof Video) {
+                Video video = (Video) elemento;
+                if (video.getLight() - valore <= 0) {
+                    System.out.println("Il valore inserito è troppo grande");
+                } else {
+                    video.diminuisciLight(valore);
+                    System.out.println("Ora il valore della luminosità è: " + video.getLight());
+                }
+            } else if (elemento instanceof Immagine) {
+                Immagine immagine = (Immagine) elemento;
+                if (immagine.getLight() - valore <= 0) {
+                    System.out.println("Il valore inserito è troppo grande");
+                } else {
+                    immagine.diminuisciLight(valore);
+                    System.out.println("Ora il valore della luminosità è: " + immagine.getLight());
+                }
+            } else {
+                System.out.println("Questo elemento non è supportato per la modifica della luminosità.");
+            }
+        }
+    }
+
+
+    private static void modificaDurata(ElementoMultimediale elemento) {
+        int valore = controlloInputValido("Quanti minuti vuoi tagliare?");
+
+        if (elemento instanceof Video) {
+            Video video = (Video) elemento;
+            if (video.getDurata() - valore <= 0) {
+                System.out.println("Il valore inserito è troppo grande");
+            } else {
+                video.tagliaVideo(valore);
+                System.out.println("Ora il video dura " + video.getDurata() + " minuti");
+            }
+        } else if (elemento instanceof Registrazione) {
+            Registrazione registrazione = (Registrazione) elemento;
+            if (registrazione.getDurata() - valore <= 0) {
+                System.out.println("Il valore inserito è troppo grande");
+            } else {
+                registrazione.tagliaRegistrazione(valore);
+                System.out.println("Ora la registrazione dura " + registrazione.getDurata() + " minuti");
+            }
+        }
+    }
+
+
+
 }
